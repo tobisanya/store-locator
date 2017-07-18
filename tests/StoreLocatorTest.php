@@ -29,6 +29,11 @@ class StoreLocatorTest extends TestCase
     public function setUp()
     {
         $this->faker = Factory::create();
+        register_shutdown_function(function() {
+            if(file_exists('testfile.txt')) {
+                unlink('testfile.txt');
+            }
+        });
     }
 
     public function testItShouldThrowExceptionWhenInitializedWithBadConfig()
